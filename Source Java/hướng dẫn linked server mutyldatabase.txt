@@ -1,0 +1,38 @@
+﻿DRIVER{MySQL ODBC 8.0 Unicode Driver}; SERVER=MYSERVER ;USER=MYUSER ;PASSWORD=MYPASS;persistsecurityinfo=True;database=Ten database;option=3;
+@author :Hà Kiệt
+
+DRIVER{MYSQL ODBC 8.0 UNICODE DRIVER};SERVER=localhost;PORT:3306;DATABASE=payroll;USER=root;PASSWORD=admin;OPTION=3
+
+
+hướng dẫn tạo kết nối 2 database là MySQL và MS SQL SERVER :
+
+B1 : Vào Control Panel -->Administrative Tools--->Open : Data Sources (ODBC)
+     Chuyển sang Tab System DSN ---> Add --->Chọn  MySQL ODBC 8.0 UNICODE DRIVER -->Click Finish
+	 Data Source Name : MYSQL
+	 TCP/IP Server: localhost   PORT 3306
+	 User : root
+	 password : admin
+	 DATABASE : payroll
+	 ---> OK
+B2: Vào Run --> Services.msc-->Tìm SQL SERVER Agent((Đúng tên server)SQLEXPRESS)--->Click chuột phải Start
+B3: Vào SQL Server 2014 Management Studio kết nối 
+	Tìm Server Object --->Chuột phải Linked Server chọn New Linked SERVER--->
+	Tab General : Linked Server : MYSQL
+				  Server type : Chọn Other data source :
+								Provider : Microsoft OLE DB Provider for ODBC Drivers
+								Product name: MYSQL
+								Data source: MYSQL
+								Provider String :DRIVER{MYSQL ODBC 8.0 UNICODE DRIVER};SERVER=localhost;PORT=3306;DATABASE=payroll;USER=root;PASSWORD=admin;OPTION=3;
+								Catalog : payroll
+	Tab Security   : Add :
+								Local login : sa
+								Remote User : sa
+								Remote Password : admin
+								
+								Click Be made using this security context:
+								Remote login : root
+								With password :admin
+	Tab	Server Options :		RPC : True
+								RPC Out : True
+B4 : Hoàn Thành								
+	 
